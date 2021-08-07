@@ -24,6 +24,7 @@ function App(props) {
   return (
     <div className="App">
       <Router>
+        <Work/>
         <Switch>
           <Route exact path="/">
             <Login />
@@ -31,6 +32,7 @@ function App(props) {
           <Route path="/home">
             <Header/>
             <Home/>
+
           </Route>
           <Route path="/mynetwork">
             <Header/>
@@ -71,6 +73,11 @@ const Network = styled.div`
     padding: 93px 380px;
     // background-color: red;
     justify-content: space-between;
+    @media(max-width: 768px){
+      flex-direction: column;
+      padding: 0;
+      align-items: center;
+    }
 `;
 
 const mapStateToProps = (state) =>{

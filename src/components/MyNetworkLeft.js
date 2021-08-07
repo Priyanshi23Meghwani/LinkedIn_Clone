@@ -98,27 +98,26 @@ const Card = styled.div`
     }
 
     div{
-        
-    
-        span{
-            
+        span{    
             display:flex;
             align-items:center;
             padding: 7px;
-            
+            cursor:pointer;    
             div{
-                
                 width: 100%;
                 padding-left: 10px;
                 display:flex;
                 align-items: center;
                 justify-content: space-between;
-
                 p{
                     color: #808080;
                 }
             }
         }
+    }
+    @media(max-width: 768px){
+        margin-top: 60px;
+        margin-bottom: 25px;
     }
 `;
 

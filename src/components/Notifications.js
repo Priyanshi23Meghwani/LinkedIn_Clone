@@ -67,6 +67,7 @@ const Layout = styled.div`
         display: flex;
         flex-direction: column;
         padding:0 5px;
+        margin: 70px 0 0 0;
     }
 
 `;
@@ -136,9 +137,23 @@ const Notify = styled.div`
     
     .icons{
         img{
-            height: 20px;
-            width: 20px;
+            height: 18px;
+            width: 18px;
         }
+        p{
+            @media(max-width:768px){
+                font-size: 12px;
+            }
+        }
+    }
+    .description{
+        padding: 0 10px 0 10px;
+        p{
+            @media(max-width:768px){
+                font-size: 14px;
+            }
+        }
+
     }
 `;
 

@@ -25,15 +25,13 @@ const Home = (props) =>{
 const Container = styled.div`
     padding-top:73px;
     max-width: 100%;
+    @media(max-width:768px)
+    {
+         padding-top: 60px;
+         matgin: 0;
+    }
 
 `;
-const Content = styled.div`
-    max-width:1128px;
-    margin-left:auto;
-    margin-right:auto;
-
-`;
-
 
 const Layout = styled.div`
     display: grid;
@@ -50,6 +48,8 @@ const Layout = styled.div`
         display: flex;
         flex-direction: column;
         padding:0 5px;
+        margin: 0;
+        padding: 0;
     }
 
 `;

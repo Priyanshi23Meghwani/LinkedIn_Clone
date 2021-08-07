@@ -12,7 +12,6 @@ const Main = (props) =>{
 
     const [showModal,setShowModal] = useState("close");
 
-
     useEffect(() =>{
         props.getArticles();
     },[]);
@@ -47,7 +46,6 @@ const Main = (props) =>{
                         props.user && props.user.photoURL ? 
                         (<img src={props.user.photoURL} />) :
                         (<img src="/images/user.svg" />)
-
                     }
                     <button onClick= {handleClick}
                             disabled={props.loading ? true: false}> Start a post</button>
@@ -145,6 +143,10 @@ const Main = (props) =>{
 
 const Container = styled.div`
     grid-area: main;
+    @media(max-width:768px)
+    {
+        width: 100%;        
+    } 
 `;
 
 const CommonCard = styled.div`
@@ -225,7 +227,10 @@ const Article = styled(CommonCard)`
     padding:0;
     margin: 0 0 10px;
     overflow: visible;
-
+    @media(max-width:768px)
+    {
+        margin:20px 0;
+    }
 `;
 
 const SharedActor = styled.div`

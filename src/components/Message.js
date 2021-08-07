@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Message = () => {
     return(
         <Container>
-        <Card>
+        <Card1>
             <div className="left">
                 <div className="heading">
                     <p>Messaging</p>
@@ -15,8 +15,9 @@ const Message = () => {
                 <div className="noMessage">
                     No Messages
                 </div>
-
             </div>
+        </Card1>
+        <Card2>
             <div className="right">
                 <div className="new">
                     <p>New Message</p>
@@ -43,7 +44,7 @@ const Message = () => {
                     </div>
                 </div>
             </div>
-        </Card>
+        </Card2>
         <Right>
                 <img src="/images/demo_image.jpg"/>
         </Right>
@@ -54,15 +55,14 @@ const Message = () => {
 const Container = styled.div`
     display: flex;
     margin-top: 73px;
+    align-items: center;
     @media(max-width:768px){
         flex-direction: column;
     }
 `;
-const Card = styled.div`
-    @media(max-width:768px){
-        margin-bottom:25px;
-    }
-    width: 40%;
+const Card1 = styled.div`
+    width: 15%;
+    min-width: 215px;
     height: 800px;
     margin-left: 20%;
     margin-right: 25px;
@@ -72,9 +72,8 @@ const Card = styled.div`
     display: flex;
 
     .left{
-        width:40%;
+        width:100%;
         height: 100%;
-        border-right: 1px solid lightgray;
         @media(max-width:768px){
             
         }
@@ -102,13 +101,23 @@ const Card = styled.div`
         place-items: center;
         height: 100%;
     }
+    @media(max-width:768px){
+        margin-bottom:25px;
+        width: 90%;
+        margin: 0;
+    }
+`;
+const Card2 = styled.div`
+    width: 35%;
+    min-width: 400px;
+    height: 800px;
+    margin-right: 25px;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 8px;
     .right{
-        width: 60%;
+        width: 100%;
         height: 100%; 
-        @media(max-width:768px){
-            width: 0;
-            height:0;
-        }
     }
     .new{
         height: 40px;
@@ -175,19 +184,25 @@ const Card = styled.div`
             height: 25px;
         }
     }
+    @media(max-width:768px){
+        &{
+            display: none;
+            width: 0;
+        }
+    }
 `;
 const Right = styled.div`
     background-color: white;
     border-radius: 10px;
     border: 1px solid lightgray;
     height: 250px;
-    width: 315px;
+    width: fit-content;
     display: grid;
     place-items: center;
     @media(max-width:768px){
         margin-bottom: 100px;
-        width: 90%;
-        margin-left: 5%;
+        width: fit-content;
+        margin: 25px 0 50px 0;
     }
 `;
 

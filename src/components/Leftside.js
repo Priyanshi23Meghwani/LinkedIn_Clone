@@ -54,6 +54,10 @@ const Leftside = (props) =>{
 
 const Container = styled.div`
     grid-area: leftside;
+    @media(max-width:768px)
+    {
+        width: 100%;        
+    }
 `;
 
 const ArtCard = styled.div`
@@ -73,6 +77,7 @@ const UserInfo = styled.div`
     padding: 12px 12px 16px;
     word-wrap: break-word;
     word-break: break-word;
+    
 `;
 const CardBackground = styled.div`
     background: url("/images/card-bg.svg");
@@ -114,6 +119,12 @@ const AddPhotoText = styled.div`
 const Widget = styled.div`
     border-bottom: 1px solid rgba(0,0,0,0.15);
     padding: 12px 0;
+    @media(max-width:768px)
+    {
+        &{
+            display: none;
+        }
+    }
     
     & > a{
         text-decoration: none;
@@ -154,6 +165,12 @@ const Item = styled.a`
     padding: 12px;
     font-size: 12px;
     display:block;
+    @media(max-width:768px)
+    {
+        &{
+            display: none;
+        }
+    }
     span{
         display: flex;
         align-items: center;
@@ -174,6 +191,12 @@ const CommunityCard = styled(ArtCard)`
     text-align: left;
     display: flex;
     flex-direction: column;
+    @media(max-width:768px)
+    {
+        &{
+            display: none;
+        }       
+    }
     a{
         color: black;
         padding: 4px 12px 4px 12px;

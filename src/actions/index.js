@@ -1,5 +1,5 @@
 import db, { auth, provider, storage } from "../firebase";
-import { SET_USER , SET_LOADING_STATUS, GET_ARTICLES} from "./actionType";
+import { SET_USER , SET_LOADING_STATUS, GET_ARTICLES, SHOW_WORK_MODAL} from "./actionType";
 
 export const setUser = (payload) => ({
     type: SET_USER,
@@ -14,8 +14,18 @@ export const setLoading = (status) => ({
 export const getArticles = (payload) => ({
     type: GET_ARTICLES,
     payload: payload,
+});
+
+export const setWorkModal = (payload) => ({
+    type: SHOW_WORK_MODAL,
+    opened: payload,
 })
 
+export function showWorkModal(){
+    return(dispatch) => {
+        
+    }
+}
 export function signInApi(){
     return(dispatch) => {
         auth

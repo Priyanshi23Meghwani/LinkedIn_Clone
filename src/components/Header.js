@@ -1,16 +1,19 @@
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { signOutAPI } from "../actions";
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 
 const Header = (props) =>{
+    const url = useLocation();
     return(
         <Container>
             <Content>
                 <Logo>
-                    <a href="/home">
+                    <Link to="/home">
                         <img src="/images/home-logo.svg" alt="home-logo"/>
-                    </a>
+                    </Link>
                 </Logo>
                 <Search>
                     <div>
@@ -20,39 +23,7 @@ const Header = (props) =>{
                         <img src="/images/search-icon.svg" alt="" />
                     </SearchIcon>
                 </Search>
-                <Nav>
-                    <NavListWrap>
-                        <NavList className="active">
-                            <a href="/home">
-                                <img src="/images/nav-home.svg" alt="nav-home"/>
-                                <span>Home</span>
-                            </a>
-                        </NavList>
-                        <NavList>
-                            <a href="/mynetwork">
-                                <img src="/images/nav-network.svg" alt="nav-network"/>
-                                <span>My Network</span>
-                            </a>
-                        </NavList>
-                        <NavList>
-                            <a href="jobs">
-                                <img src="/images/nav-jobs.svg" alt="nav-jobs"/>
-                                <span>Jobs</span>
-                            </a>
-                        </NavList>
-                        <NavList>
-                            <a href="messaging">
-                                <img src="/images/nav-messaging.svg" alt="nav-messaging"/>
-                                <span>Messaging</span>
-                            </a>
-                        </NavList>
-                        <NavList>
-                            <a href="/notifications">
-                                <img src="/images/nav-notifications.svg" alt="nav-notifications"/>
-                                <span>Notifications</span>
-                            </a>
-                        </NavList>
-                       
+                <LogOutMobile>
                         <User>
                             <a>
                                 {
@@ -68,14 +39,65 @@ const Header = (props) =>{
                                 <a>Sign Out</a>
                             </SignOut>
                         </User>
+                </LogOutMobile>
+                <Nav>
+                    <NavListWrap>
+                        <NavList className={url.pathname ==="/home" && "active"}>
+                            <Link to="/home">
+                                <img src="/images/nav-home.svg" alt="nav-home"/>
+                                <span>Home</span>
+                            </Link>
+                        </NavList>
+                        <NavList className={url.pathname ==="/mynetwork" && "active"}>
+                            <Link to="/mynetwork">
+                                <img src="/images/nav-network.svg" alt="nav-network"/>
+                                <span>My Network</span>
+                            </Link>
+                        </NavList>
+                        <NavList className={url.pathname ==="/jobs" && "active"}>
+                            <Link to="/jobs">
+                                <img src="/images/nav-jobs.svg" alt="nav-jobs"/>
+                                <span>Jobs</span>
+                            </Link>
+                        </NavList>
+                        <NavList className={url.pathname ==="/messaging" && "active"}>
+                            <Link to="/messaging">
+                                <img src="/images/nav-messaging.svg" alt="nav-messaging"/>
+                                <span>Messaging</span>
+                            </Link>
+                        </NavList>
+                        <NavList className={url.pathname ==="/notifications" && "active"}>
+                            <Link to="/notifications">
+                                <img src="/images/nav-notifications.svg" alt="nav-notifications"/>
+                                <span>Notifications</span>
+                            </Link>
+                        </NavList>
+                        <UserOuter>
+                        <User>
+                            <a>
+                                {
+                                    props.user && props.user.photoURL ? <img src={props.user.photoURL} alt="" /> :
+                                    <img src="/images/user.svg" alt="user-svg"/>
+                                }                               
+                                <span>Me
+                                    <img src="/images/down-icon.svg" alt="down-icon"/>
+                                </span>
+                            </a>
+
+                            <SignOut onClick = {() => props.signOut()}>
+                                <a>Sign Out</a>
+                            </SignOut>
+                        </User>
+                        </UserOuter>
+
                         <Work>
-                            <a href="/work">
+                            <div>
 
                                 <img src="/images/nav-jobs.svg" alt="nav-work"/>
                                 <span>Work
                                     <img src="/images/down-icon.svg" alt="down-icon"/>
                                 </span>
-                            </a>
+                            </div>
                         </Work>
 
                     </NavListWrap>
@@ -90,11 +112,12 @@ const Container = styled.div`
     // border-bottom: 1px solid rgba(0,0,0,0.08);
     
     left:0;
-    padding: 5px 24px;
+    padding: 5px 5px 5px 5px;
     position: fixed;
     top: 0;
     width:100vw;
     z-index: 100;
+    
 
 `;
 
@@ -133,6 +156,12 @@ const Search = styled.div`
             vertical-align: text-top;
         }
     }
+    @media(max-width: 768px){
+        margin:0;
+        &{
+            width: 225px;
+        }
+    }
 `;
 
 const SearchIcon = styled.div`
@@ -146,6 +175,11 @@ const SearchIcon = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+const LogOutMobile = styled.div`
+    @media(min-width:768px){
+        display: none;
+    }
 `;
 
 const Nav = styled.nav`
@@ -162,6 +196,7 @@ const Nav = styled.nav`
 
 const NavListWrap = styled.ul`
     display:flex;
+    justify-content: space-around;
     flex-wrap: nowrap;
     list-style-type: none;
 
@@ -228,20 +263,25 @@ const SignOut = styled.div`
     background: white;
     border-radius: 10px 0 10px 10px;
     width: 100px;
-    /* right: 225px; */
     height: 40px;
     font-size: 16px;
     transition-duration: 167ms;
     text-align:center;
     display: none;
+    cursor: pointer;
 `;
-
-const User = styled(NavList)`
+const UserOuter = styled.div`
+    @media(max-width: 768px){
+        &{
+            display: none;
+        }
+    }
+`;
+const User = styled(NavList)`    
     a>svg{
         width:24px;
         border-radius: 50%;
     }
-
     a>img{
         width: 24px;
         height:24px;
@@ -251,7 +291,6 @@ const User = styled(NavList)`
         display:flex;
         align-items: center;
     }
-
     &:hover{
         ${SignOut}{
             align-items: center;
@@ -262,6 +301,12 @@ const User = styled(NavList)`
 `;
 const Work = styled(User)`
     border-left: 1px solid rgba(0,0,0,0.08);
+    cursor: pointer;
+    @media(max-width: 768px){
+        &{
+            display: none;
+        }
+    }
 `;
 
 const mapStateToProps = (state) =>{

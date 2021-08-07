@@ -2,11 +2,9 @@ import styled from "styled-components";
 
 
 const Work = (props) => {
-
-
+    
     return(
-        
-        <Container>
+                <Container>
             {/* Cross sign */}
             <Content>
                 <button> 
@@ -80,6 +78,7 @@ const Work = (props) => {
 export default Work;
 
 const Container = styled.div`
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
