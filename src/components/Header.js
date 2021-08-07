@@ -1,7 +1,9 @@
+import { connect } from "react-redux";
 import styled from "styled-components";
+import { signOutAPI } from "../actions";
 
 
-const Header = () =>{
+const Header = (props) =>{
     return(
         <Container>
             <Content>
@@ -21,31 +23,31 @@ const Header = () =>{
                 <Nav>
                     <NavListWrap>
                         <NavList className="active">
-                            <a>
+                            <a href="/home">
                                 <img src="/images/nav-home.svg" alt="nav-home"/>
                                 <span>Home</span>
                             </a>
                         </NavList>
                         <NavList>
-                            <a>
+                            <a href="/mynetwork">
                                 <img src="/images/nav-network.svg" alt="nav-network"/>
                                 <span>My Network</span>
                             </a>
                         </NavList>
                         <NavList>
-                            <a>
+                            <a href="jobs">
                                 <img src="/images/nav-jobs.svg" alt="nav-jobs"/>
                                 <span>Jobs</span>
                             </a>
                         </NavList>
                         <NavList>
-                            <a>
+                            <a href="messaging">
                                 <img src="/images/nav-messaging.svg" alt="nav-messaging"/>
                                 <span>Messaging</span>
                             </a>
                         </NavList>
                         <NavList>
-                            <a>
+                            <a href="/notifications">
                                 <img src="/images/nav-notifications.svg" alt="nav-notifications"/>
                                 <span>Notifications</span>
                             </a>
@@ -53,18 +55,22 @@ const Header = () =>{
                        
                         <User>
                             <a>
-                                <img src="/images/user.svg" alt="user-svg"/>
+                                {
+                                    props.user && props.user.photoURL ? <img src={props.user.photoURL} alt="" /> :
+                                    <img src="/images/user.svg" alt="user-svg"/>
+                                }                               
                                 <span>Me
                                     <img src="/images/down-icon.svg" alt="down-icon"/>
                                 </span>
                             </a>
 
-                            <SignOut>
+                            <SignOut onClick = {() => props.signOut()}>
                                 <a>Sign Out</a>
                             </SignOut>
                         </User>
                         <Work>
-                            <a>
+                            <a href="/work">
+
                                 <img src="/images/nav-jobs.svg" alt="nav-work"/>
                                 <span>Work
                                     <img src="/images/down-icon.svg" alt="down-icon"/>
@@ -81,7 +87,8 @@ const Header = () =>{
 
 const Container = styled.div`
     background-color: white;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    // border-bottom: 1px solid rgba(0,0,0,0.08);
+    
     left:0;
     padding: 5px 24px;
     position: fixed;
@@ -195,7 +202,8 @@ const NavList = styled.li`
             align-items: center;
         }
         @media(max-width:768px){
-            min-width: 70px;
+            min-width: 60px;
+            font-size: 10px;
         }
     }
     &:hover,
@@ -204,6 +212,12 @@ const NavList = styled.li`
             span{
                 color: rgba(0,0,0,0.9);
             }
+        }
+    }
+    img{
+        @media(max-width:768px){
+            width: 20px;
+            height: 20px;
         }
     }
 `;
@@ -250,6 +264,16 @@ const Work = styled(User)`
     border-left: 1px solid rgba(0,0,0,0.08);
 `;
 
+const mapStateToProps = (state) =>{
+    return{
+        user: state.userState.user,
+    };
+};
 
+const mapDispatchToProps = (dispatch) => ({
 
-export default Header;
+    signOut: () => dispatch(signOutAPI()),
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
