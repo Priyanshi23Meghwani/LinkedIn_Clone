@@ -3,11 +3,16 @@ import styled from "styled-components";
 import { signOutAPI } from "../actions";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import Work from "./Work";
 
 
 const Header = (props) =>{
     const url = useLocation();
+    
+    const [showWorkModal, setShowWorkModal] = useState(false);
+    
     return(
+        <>
         <Container>
             <Content>
                 <Logo>
@@ -90,20 +95,22 @@ const Header = (props) =>{
                         </User>
                         </UserOuter>
 
-                        <Work>
-                            <div>
+                        <Workhere>
+                            <div onClick ={() => (showWorkModal ? setShowWorkModal(false) : setShowWorkModal(true))}>
 
                                 <img src="/images/nav-jobs.svg" alt="nav-work"/>
                                 <span>Work
                                     <img src="/images/down-icon.svg" alt="down-icon"/>
                                 </span>
                             </div>
-                        </Work>
+                        </Workhere>
 
                     </NavListWrap>
                 </Nav>
             </Content>
         </Container>
+        <Work  show={showWorkModal}/>
+        </>
     );
 }
 
@@ -299,7 +306,7 @@ const User = styled(NavList)`
         }
     }
 `;
-const Work = styled(User)`
+const Workhere = styled(User)`
     border-left: 1px solid rgba(0,0,0,0.08);
     cursor: pointer;
     @media(max-width: 768px){

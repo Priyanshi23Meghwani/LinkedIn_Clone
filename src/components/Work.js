@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 
 const Work = (props) => {
-    
+
+
     return(
-                <Container>
+        <div style={{display:props.show?"":"none"}}>
+            <Container prop={props}>
             {/* Cross sign */}
             <Content>
-                <button> 
-                    <img src="/images/work/cross.svg" alt="close-icon" />
-                </button>
+
                 <Card1>
                     <p>Visit More LinkedIn Products.</p>
 
@@ -70,15 +70,16 @@ const Work = (props) => {
                 </Card2>
                 
             </Content>
+            
         </Container>
-
+        </div>
     )
+
 }
 
-export default Work;
-
 const Container = styled.div`
-    display: none;
+    // ${(prop) => (prop.show?"":"display:none")};
+    // ${(prop) => console.log(prop)}
     position: fixed;
     top: 0;
     left: 0;
@@ -104,13 +105,6 @@ const Content = styled.div`
     align-items: center;
     justify-content: flex-start;
 
-    button{
-        margin-left: 300px;
-        margin-top: 20px;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
 `;
 
 const Card1 = styled.div`
@@ -203,3 +197,7 @@ const Card2 = styled.div`
     }
 
 `;
+
+
+
+export default Work;

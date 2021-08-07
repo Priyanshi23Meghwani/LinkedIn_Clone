@@ -3,7 +3,6 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import styled from 'styled-components';
-
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import { useEffect } from 'react';
 import { getUserAuth } from './actions';
@@ -18,7 +17,7 @@ import MyNetworkRight from './components/MyNetworkRight';
 function App(props) {
   useEffect(() => {
     props.getUserAuth();
-  }, []);
+  },[]);
 
 
   return (
@@ -56,12 +55,13 @@ function App(props) {
           </Route>
 
           {/* Make it a model */}
-          <Route path="/work">
+          {/* <Route path="/work">
               <Header />  
               <Work/>  
-          </Route>
+          </Route> */}
         </Switch>
       </Router>
+      {/* <Work/> */}
 
 
       
