@@ -38,8 +38,9 @@ const Main = (props) =>{
 
     return(
         <>
-        { props.articles.length === 0 ? (<p>There are no articles</p>) :
-        (<Container>
+        {/* { props.articles.length === 0 ? (<p>There are no articles</p>) : */}
+        {/* ( */}
+            <Container>
             <ShareBox>
                 <div>
                     {   
@@ -85,9 +86,7 @@ const Main = (props) =>{
                                 <span>{article.actor.date.toDate().toLocaleDateString()}</span>
                             </div>
                         </a>
-                        <button>
-                            <img src="/images/plus-icon.svg" alt="3horizontal-dots" />
-                        </button>
+                        
                     </SharedActor>
                     <Description>
                         {article.description}
@@ -107,13 +106,11 @@ const Main = (props) =>{
                                 <span>75</span>
                               </button>
                         </li>
-                        <li>
-                            <a>{article.comments}</a>
-                        </li>
+                        
                     </SocialCount>
-                    <socialAction>
+                    <SocialAction>
                         <button>
-                            <img src="/images/comment-icon.svg" alt="like-icon" />
+                            <img src="/images/like-icon.svg" alt="like-icon" />
                             <span>Like</span>
                         </button>
                         <button>
@@ -121,22 +118,22 @@ const Main = (props) =>{
                             <span>Comments</span>
                         </button>
                         <button>
-                            <img src="/images/comment-icon.svg" alt="share-icon" />
-                            <span>Like</span>
+                            <img src="/images/share-icon.svg" alt="share-icon" />
+                            <span>Share</span>
                         </button>
                         <button>
-                            <img src="/images/comment-icon.svg" alt="send-icon" />
-                            <span>Like</span>
+                            <img src="/images/send-icon.svg" alt="send-icon" />
+                            <span>Send</span>
                         </button>
-                    </socialAction>
+                    </SocialAction>
 
                 </Article>
                 ))}
             </Content>
             <PostModal showModal={showModal} handleClick={handleClick} />
             {/* <Work /> */}
-        </Container>)
-        }
+        </Container>
+        {/* )} */}
         </>
     )
 }
@@ -276,14 +273,6 @@ const SharedActor = styled.div`
         }
     }
 
-    button{
-        position: absolute;
-        right: 12px;
-        top: 0;
-        background: transparent;
-        border: none;
-        outline: none;
-
 `;
 
 const Description = styled.div`
@@ -299,11 +288,12 @@ const SharedImg = styled.div`
         width: 100%;
         display: block;
         position: relative;
-        background-color: #f9fafb;
+        background-color: white;
         img{
             object-fit: contain;
             width: 100%;
             height: 100%;
+            max-height: 450px;
 
         }
 `;
@@ -339,7 +329,12 @@ const SocialAction = styled.div`
             display: inline-flex;
             align-items: center;
             padding: 8px;
-            color: #0a66c2;
+            color: rgba(0,0,0,0.6);
+            background-color: transparent;
+            border: none;
+            margin: 0 8px;
+            font-weight: 600;
+            
         }
 
         @media(min-width:768px){

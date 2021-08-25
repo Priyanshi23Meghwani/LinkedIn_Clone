@@ -36,12 +36,15 @@ const Container = styled.div`
 const Layout = styled.div`
     display: grid;
     grid-template-areas: "leftside main rightside";
-    /* grid-template-columns: minmax(0,5fr) minmax(300,7fr) minmax(0,8fr); */
-    grid-template-columns: 0.40fr 1fr 0.56fr ;
+    // grid-template-columns: minmax(0,5fr) minmax(300,7fr) minmax(0,8fr); 
+    // grid-template-columns: 0.40fr 1fr 0.56fr ;
+    grid-template-columns: 280px 640px 320px;
     column-gap: 25px;
     row-gap: 25px;
     grid-template-rows: auto;
-    margin: 0 300px;
+    // margin: 0 300px;
+    justify-content: center;
+    
     padding: 20px 55px 20px 80px;
     @media(max-width:768px)
     {
